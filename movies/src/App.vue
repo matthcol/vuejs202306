@@ -11,7 +11,8 @@ const duration: Ref<number> = ref(120)
 const movie = ref({
   title: "E.T.",
   year: 1982,
-  duration: 115
+  duration: 115,
+  genres: ["Adventure", "Family", "Sci-Fi"]
 })
 </script>
 
@@ -20,21 +21,23 @@ const movie = ref({
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <TheMovie :title=title :year=year :duration=duration />
+      <TheMovie :title=title :year=year :duration=duration :genres="[]"/>
       <div>
         <div>title<input v-model="title" /></div>
         <div>year<input type="number" v-model="year" /></div>
         <div>duration<input type="number" v-model="duration" /></div>
       </div>
     
-      <TheMovie :title=movie.title :year=movie.year :duration=movie.duration />
+      <TheMovie :title=movie.title :year=movie.year :duration=movie.duration 
+          :genres=movie.genres
+      />
       <div>
         <div>title<input v-model="movie.title" /></div>
         <div>year<input type="number" v-model="movie.year" /></div>
         <div>duration<input type="number" v-model="movie.duration" /></div>
       </div>
 
-      <TheMovie title="L'Ours" :year="1988" :duration="121" />
+      <TheMovie title="L'Ours" :year="1988" :duration="121" :genres="[]"/>
 
       <EditableMovie />
     </div>
