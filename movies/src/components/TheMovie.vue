@@ -1,9 +1,11 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   title: string,
   year: number,
   duration: number
 }>()
+
+console.log(props)
 </script>
 
 <template>
@@ -11,7 +13,7 @@ defineProps<{
     <h1 class="green">{{ title }}</h1>
     <ul>
       <li>year: {{ year }}</li>
-      <li>duration: {{ duration }}mn</li>
+      <li>duration: {{ props.duration }}mn</li>
     </ul>
   </div>
 </template>

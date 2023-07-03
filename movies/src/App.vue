@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue';
 import TheMovie from './components/TheMovie.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import EditableMovie from './components/EditableMovie.vue';
+
+const title: Ref<string> = ref('a title')
+const year: Ref<number> = ref(2023)
+const duration: Ref<number> = ref(120)
+
+const movie = ref({
+  title: "E.T.",
+  year: 1982,
+  duration: 115
+})
 </script>
 
 <template>
@@ -8,8 +20,25 @@ import TheWelcome from './components/TheWelcome.vue'
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <TheMovie title="The Covenant" :year="2023" :duration="120" />
+      <TheMovie :title=title :year=year :duration=duration />
+      <div>
+        <div>title<input v-model="title" /></div>
+        <div>year<input type="number" v-model="year" /></div>
+        <div>duration<input type="number" v-model="duration" /></div>
+      </div>
+    
+      <TheMovie :title=movie.title :year=movie.year :duration=movie.duration />
+      <div>
+        <div>title<input v-model="movie.title" /></div>
+        <div>year<input type="number" v-model="movie.year" /></div>
+        <div>duration<input type="number" v-model="movie.duration" /></div>
+      </div>
+
+      <TheMovie title="L'Ours" :year="1988" :duration="121" />
+
+      <EditableMovie />
     </div>
+    
   </header>
 
   <main>
