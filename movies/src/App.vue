@@ -2,8 +2,11 @@
 import { ref, type Ref } from 'vue';
 import TheMovie from './components/TheMovie.vue'
 import EditableMovie from './components/EditableMovie.vue';
-import { type Movie } from  './components/Movie';
 import MovieMovie from './components/MovieMovie.vue';
+
+// TypeScript types
+import { type Movie } from  './components/Movie';
+import MovieCollection from  './components/MovieCollection';
 
 const title: Ref<string> = ref('a title')
 const year: Ref<number> = ref(2023)
@@ -22,6 +25,37 @@ const movie2: Ref<Movie> = ref({
   duration: 160,
   genres: ["Action", "Crime", "Thriller"]
 })
+
+const movieCollection : MovieCollection = {
+  movies: [
+    {
+      title: "Star Wars IV",
+      year: 1977,
+      genres: []
+    },
+    {
+      title: "Star Wars V",
+      year: 1980,
+      genres: []
+    },
+    {
+      title: "Star Wars VI",
+      year: 1983,
+      genres: []
+    },
+    {
+      title: "Star Wars I",
+      year: 1999,
+      genres: []
+    },
+    {
+      title: "Star Wars IX",
+      year: 2019,
+      genres: ["Action", "Adventure", "Fantasy"]
+    },
+  ]
+}
+
 </script>
 
 <template>
@@ -56,6 +90,12 @@ const movie2: Ref<Movie> = ref({
       </div>
 
       <EditableMovie />
+    </div>
+
+    <div class="wrapper">
+      <div v-for="(movie,index) in movieCollection.movies" :key="index">
+          <MovieMovie :movie="movie"/>
+      </div>
     </div>
     
   </main>
