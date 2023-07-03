@@ -4,7 +4,7 @@
 const props = defineProps<{
   title: string,
   year: number,
-  duration: number,
+  duration?: number,
   genres: string[]
 }>()
 
@@ -21,8 +21,10 @@ console.log(props)
     <h1 class="green">{{ title.toUpperCase() }}</h1>
     <ul>
       <li>year: {{ year < 2000 ? year % 100: year }}</li>
-      <li>duration: {{ props.duration }}mn
-          (<span v-if="duration < 60">short</span>
+      <li>duration: {{ props.duration ?? 'unknown '}}mn
+          (
+          <span v-if="duration == null">unknown</span>
+          <span v-else-if="duration < 60">short</span>
           <span v-else-if="duration < 120">medium</span>
           <span v-else>long</span>)
       </li>
@@ -35,7 +37,7 @@ console.log(props)
       </li>
       <li>genres (v-for + index):
           <ul>
-              <li v-for="(genre, index) in genres">{{ index+1 }} - {{ genre }}</li>
+              <li v-for="(genre, index) in genres" :key="index">{{ index+1 }} - {{ genre }}</li>
           </ul>
       </li>
     </ul>
