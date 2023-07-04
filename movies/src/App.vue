@@ -53,6 +53,7 @@ const movieCollection : Ref<MovieCollection> = ref(new MovieCollection(...[
       genres: ["Action", "Adventure", "Fantasy"]
     }
   ]));
+  movieCollection.value.debug();
 
 </script>
 
@@ -92,7 +93,7 @@ const movieCollection : Ref<MovieCollection> = ref(new MovieCollection(...[
 
     <div class="wrapper">
       <h1>Movies</h1>
-      <button v-on:click="movieCollection.debug()">Debug</button>
+      <button v-on:click="movieCollection.debug">Debug</button>
       <div v-for="(movie,index) in movieCollection.movies" :key="index">
           <MovieMovie :movie="movie"/>
       </div>
