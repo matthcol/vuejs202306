@@ -7,6 +7,8 @@ import MovieMovie from './components/MovieMovie.vue';
 // TypeScript types
 import { type Movie } from  './components/Movie';
 import MovieCollection from  './components/MovieCollection';
+import MovieVNode from './components/MovieVNode.vue';
+// import MovieTSX from './components/MovieTSX.vue';
 
 const title: Ref<string> = ref('a title')
 const year: Ref<number> = ref(2023)
@@ -87,6 +89,9 @@ const movieCollection : Ref<MovieCollection> = ref(new MovieCollection(...[
         <div>year<input type="number" v-model="movie2.year" /></div>
         <div>duration<input type="number" v-model="movie2.duration" /></div>
       </div>
+
+      <MovieVNode :title="movie2.title" :year="movie2.year"/>
+      <!-- <MovieTSX :title="movie2.title" :year="movie2.year"/> -->
 
       <EditableMovie />
     </div>
