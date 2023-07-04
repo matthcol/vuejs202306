@@ -93,6 +93,8 @@ const movieCollection : MovieCollection = {
     </div>
 
     <div class="wrapper">
+      <h1>Movies</h1>
+      <button v-on:click="movieCollection.debug()">Debug</button>
       <div v-for="(movie,index) in movieCollection.movies" :key="index">
           <MovieMovie :movie="movie"/>
       </div>

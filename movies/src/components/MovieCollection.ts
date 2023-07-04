@@ -7,4 +7,8 @@ export default class MovieCollection extends Vue {
 
     movies: Movie[] = [];
 
+    debug(){
+        console.log("Movies: ", this.movies.length, this.movies)
+    }
+
 }
