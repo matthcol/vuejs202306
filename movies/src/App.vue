@@ -26,8 +26,7 @@ const movie2: Ref<Movie> = ref({
   genres: ["Action", "Crime", "Thriller"]
 })
 
-const movieCollection : MovieCollection = {
-  movies: [
+const movieCollection : Ref<MovieCollection> = ref(new MovieCollection(...[
     {
       title: "Star Wars IV",
       year: 1977,
@@ -52,9 +51,8 @@ const movieCollection : MovieCollection = {
       title: "Star Wars IX",
       year: 2019,
       genres: ["Action", "Adventure", "Fantasy"]
-    },
-  ]
-}
+    }
+  ]));
 
 </script>
 
