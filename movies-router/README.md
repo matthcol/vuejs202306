@@ -32,3 +32,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### JSON Server
+json-server --watch db/movies_records.json
+
+json-server --watch db\movies_records.json
