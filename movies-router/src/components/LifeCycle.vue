@@ -10,6 +10,7 @@ export default {
   },
   created() {
     console.log("created");
+    // call async method here to populate this component
   },
   mounted() {
     console.log("mounted");
