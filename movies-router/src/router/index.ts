@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import MoviesView from "../views/MoviesView.vue";
 import MovieDetailView from "../views/MovieDetailView.vue";
 import MovieSearchView from "../views/MovieSearchView.vue";
+import DemoWatchView from "../views/DemoWatchView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/PeopleView.vue"),
+  },
+  {
+    path: "/demo-watch",
+    name: "demo_watch",
+    component: DemoWatchView,
   },
 ];
 
