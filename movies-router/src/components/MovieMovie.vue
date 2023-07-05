@@ -23,8 +23,10 @@ const props = defineProps<{
         <span v-else-if="movie.duration < 120">medium</span>
         <span v-else>long</span>)
       </li>
-      <li v-if="movie.genres.length > 0">genres: {{ movie.genres }}</li>
-      <li>genres (join): {{ movie.genres.join(", ") }}</li>
+      <li v-if="movie.genres && movie.genres?.length > 0">
+        genres: {{ movie.genres }}
+      </li>
+      <li>genres (join): {{ movie.genres?.join(", ") }}</li>
       <li>
         genres (v-for):
         <ul>
@@ -36,7 +38,7 @@ const props = defineProps<{
       <li>
         genres (v-for + index):
         <ul>
-          <li v-for="(genre, index) in movie.genres" :key="index">
+          <li v-for="(genre, index) in movie.genres ?? []" :key="index">
             {{ index + 1 }} - {{ genre }}
           </li>
         </ul>

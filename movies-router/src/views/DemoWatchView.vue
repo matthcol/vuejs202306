@@ -40,7 +40,7 @@ const callBackMovieUpdated = (movie: Movie) =>
         <p>
           {{ movie.title }} ({{ movie.year }},
           {{ movie.duration ?? "no duration " }} mn):
-          {{ movie.genres.join(",") }}
+          {{ movie.genres?.join(",") }}
         </p>
       </template>
     </ul>

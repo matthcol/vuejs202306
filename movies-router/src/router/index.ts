@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import MoviesView from "../views/MoviesView.vue";
 import MovieDetailView from "../views/MovieDetailView.vue";
-import MovieSearchView from "../views/MovieSearchView.vue";
+// import MovieSearchView from "../views/MovieSearchView.vue";
+import MoviesSearchApiView from "../views/MoviesSearchApiView.vue";
 import DemoWatchView from "../views/DemoWatchView.vue";
+import CountView from "@/views/CountView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,9 +19,9 @@ const routes: Array<RouteRecordRaw> = [
     component: MovieDetailView,
   },
   {
-    path: "/search",
-    name: "search",
-    component: MovieSearchView,
+    path: "/movie-search",
+    name: "movie_search",
+    component: MoviesSearchApiView,
   },
   {
     path: "/people",
@@ -34,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/demo-watch",
     name: "demo_watch",
     component: DemoWatchView,
+  },
+  {
+    path: "/count",
+    name: "count",
+    component: CountView,
   },
 ];
 

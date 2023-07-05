@@ -2,8 +2,10 @@
   <nav>
     <router-link to="/">Movies</router-link> |
     <router-link to="/movie-detail/0">Movie detail</router-link> |
+    <router-link to="/movie-search">Movie search</router-link> |
     <router-link to="/people">People</router-link> |
-    <router-link to="/demo-watch">Watch</router-link>
+    <router-link to="/demo-watch">Watch</router-link> |
+    <router-link to="/count">Count</router-link>
   </nav>
   <router-view />
 </template>
