@@ -2,85 +2,53 @@
 // Article:  https://vuejsdevelopers.com/2022/06/01/ref-vs-reactive/
 import { ref, computed, reactive, type Ref, watch } from "vue";
 import type { Movie } from "../types/Movie";
+import MovieCollection from "../types/MovieCollection";
+import DemoWatchChild from "../components/DemoWatchChild.vue";
 
-let newGenre: Ref<string> = ref("");
-const movie1: Ref<Movie> = ref({
-  title: "Violent Night",
-  year: 2021,
-  genres: ["Action"],
-});
-const movie2: Movie = reactive({
-  title: "Guardians of the Galaxy Vol.3",
-  year: 2023,
-  duration: 150,
-  genres: ["Action"],
-});
-
-const genreCount1 = computed(() => {
-  return movie1.value.genres.length;
-});
-
-const genreCount2 = computed(() => {
-  return movie2.genres.length;
-});
-
-const movieShortDescription = computed({
-  get() {
-    const durationStr = movie1.value.duration
-      ? `{movie.duration}mn`
-      : "unknown";
-    return `${movie1.value.title} (${movie1.value.year}, ${durationStr})#${movie1.value.genres.length}`;
-  },
-  set(newValue) {
-    // DO NOTHING
-  },
-});
-
-function addGenre(movie: Movie) {
-  console.log("add genre:", newGenre.value, movie);
-  if (newGenre.value.length > 0) {
-    movie.genres.push(newGenre.value);
-  }
-}
-
-function resetGenre() {
-  newGenre.value = "";
-}
-
-watch(movie1.value.genres, (newGenres) =>
-  console.log("Watcher 1 - genres has changed:", newGenres)
+const movieCollection: Ref<MovieCollection> = ref(
+  new MovieCollection(
+    {
+      title: "Star Wars IV",
+      year: 1977,
+      genres: [],
+    },
+    {
+      title: "Star Wars V",
+      year: 1980,
+      genres: [],
+    },
+    {
+      title: "Star Wars VI",
+      year: 1983,
+      genres: [],
+    }
+  )
 );
-watch(newGenre, (newValue, oldValue) =>
-  console.log("Watcher 1 - input genre has changed:", oldValue, "->", newValue)
-);
+const callBackUpdateMovieNotity = () =>
+  console.log("Parent: one movie has been updated");
+const callBackGenreAdded = (genre: string) =>
+  console.log(`Parent: genre added [${genre}]`);
+const callBackMovieUpdated = (movie: Movie) =>
+  console.log("Parent: movie updated: ", movie);
 </script>
 
 <template>
   <div class="wrapper">
-    <h1>Demo Watch</h1>
+    <h1>Demo Watch/Emit</h1>
     <ul>
-      <template v-for="(movie, index) in [movie1, movie2]" :key="index">
+      <template v-for="(movie, index) in movieCollection.movies" :key="index">
         <p>
           {{ movie.title }} ({{ movie.year }},
-          {{ movie.duration ?? "no duration " }} mn)
+          {{ movie.duration ?? "no duration " }} mn):
+          {{ movie.genres.join(",") }}
         </p>
-        <p>Genres: {{ movie.genres.join(",") }}</p>
       </template>
     </ul>
-    <p>Short description 1: {{ movieShortDescription }}</p>
-    <p>Genre count 1 (ref): {{ genreCount1 }}</p>
-    <p>Genre count 2 (reactive): {{ genreCount2 }}</p>
-    <div>
-      <input id="genre" v-model="newGenre" />
-      <button
-        @click="
-          addGenre(movie1);
-          addGenre(movie2);
-          resetGenre();
-        "
-      >
-        Add
-      </button>
-    </div>
+    <DemoWatchChild
+      :movie="movieCollection.movies[0]"
+      @movie-update-notify="callBackUpdateMovieNotity"
+      @genre-added="callBackGenreAdded"
+      @movie-updated="callBackMovieUpdated"
+    />
   </div>
 </template>
